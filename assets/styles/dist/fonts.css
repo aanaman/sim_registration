@@ -1,0 +1,78 @@
+@font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-Bold.otf);
+    font-weight: bold;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-BoldItalic.otf);
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-ExtraBold.otf);
+    font-weight: bolder;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-ExtraBoldItalic.otf);
+    font-weight: bolder;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-ExtraLight.otf);
+    font-weight: lighter;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-ExtraLightItalic.otf);
+    font-weight: lighter;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-Light.otf);
+    font-weight: 200;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-LightItalic.otf);
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-Medium.otf);
+    font-weight: 300;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-MediumItalic.otf);
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-Regular.otf);
+    font-weight: normal;
+  }
+  
+  @font-face {
+    font-family: MTNBrighterSans;
+    src: url(../../fonts/MTNBrighterSans-RegularItalic.otf);
+    font-weight: normal;
+    font-style: italic;
+  }
+  

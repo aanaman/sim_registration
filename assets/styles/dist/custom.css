@@ -1,0 +1,130 @@
+@import "fonts.css";
+@import "colors.css";
+
+body {
+    font-family: MTNBrighterSans;
+    font-weight: normal;
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    background: #f2f2f2;
+}
+.btn-rounded {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 30px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    outline:none;
+}
+.btn-rounded-outline {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+    background-clip: padding-box;
+    border: 1px solid #176A8F;
+    border-radius: 30px;
+    background: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out,background 0.15s ease-in-out;
+    outline: none;
+}
+
+    .btn-rounded-outline:hover {
+        box-shadow: 0px 5px rgba(0,40,60,.05);
+        outline:none;
+    }
+.btn-rounded-blue {
+    background: #176A8F;
+}
+.btn-rounded:focus{
+    outline: none !important;
+}
+.btn-rounded-primary{
+    background: #ffcc00;
+}
+.form-control-custom {
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #00678f;
+    border-radius: 10rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    outline: none;
+}
+.rounded-custom {
+    border: 1px solid #00678f;
+    outline: none;
+    border-radius: 30px;
+    height: calc(1.5em + 0.75rem + 2px);
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box; 
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.navbar{
+    background: linear-gradient(#ffcc00,#ffcc00);
+}
+.navbar-dark .navbar-nav .nav-link{
+    color: #000;
+    transition: color .3s ease-in;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+    color: #00678f;
+}
+.centered-flex-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-content:center;
+    width: 100%;
+    height: 80vh;
+    z-index: -1;
+    box-sizing:border-box;
+}
+    .centered-flex-container .wrap {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 400px;
+    }
+
+span.k-widget.k-datepicker.k-header.form-control-custom {
+    height: calc(1em + 0.75rem + 10px);
+    padding: 0;
+    padding-bottom: 1px;
+}
+span.k-widget.k-datepicker.k-header, span.k-widget.k-datepicker.k-header input{
+    background: none !important;
+    border: none;
+    outline: none;
+}
+    span.k-widget.k-datepicker.k-header span:hover {
+        border: none;
+        box-shadow:none;
+    }
+    span.k-widget.k-datepicker.k-header span:focus {
+        border: none;
+        box-shadow: none;
+    }

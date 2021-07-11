@@ -30,6 +30,10 @@
             color: red;
         }
         
+        img {
+            border-radius: 10px;
+        }
+        
         
     </style>
     <title>Sim Registration Portal</title>
@@ -112,7 +116,7 @@
         function take_snapshot() {
             Webcam.snap( function(data_uri) {
                 $(".image-tag").val(data_uri);
-                document.getElementById('results').innerHTML = '<img src="'+data_uri+'" style="border: 1px solid red; border-radius: 10px;"/>';
+                document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
             } );
         }
     </script>

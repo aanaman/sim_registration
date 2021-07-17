@@ -62,48 +62,27 @@
             <span>Sim Registration</span>
         </div>
         <div class="card-body">
-            <form method="post" id="questions-form" enctype="multipart/form-data" action="/Products/Submit">
+            <form method="post">
                 <input type="hidden" name="productId" value="3" />
                 <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>FIRST NAME</label>
-                                    <input type="text" validationMessage="field is required" name="k-1" class="form-control-custom" required />
+                                    <input type="text" validationMessage="field is required" name="firstname" class="form-control-custom" required />
                                     <span class="k-invalid-msg"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>LAST NAME</label>
-                                    <input type="text" validationMessage="field is required" name="k-2" class="form-control-custom" required />
+                                    <input type="text" validationMessage="field is required" name="lastname" class="form-control-custom" required />
                                     <span class="k-invalid-msg"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>PHONE NUMBER</label>
-                                    <input type="text" validationMessage="field is required" name="k-8" class="form-control-custom" required />
-                                    <span class="k-invalid-msg"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>DATE OF BIRTH</label>
-                                    <input type="date" validationMessage="field is required" name="k-5" class="form-control-custom" required />
-                                    <span class="k-invalid-msg"></span>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>MIDDLE NAME</label>
-                                    <input type="text" validationMessage="field is required" name="k-3" class="form-control-custom"  />
-                                    <span class="k-invalid-msg"></span>
-                                </div>
-                            </div>
-                                                    <div class="col-sm-4">
                                     <div class="form-group">
                                             <label>Valid National ID Card</label>
-                                            <select class="form-control-custom" validationMessage="please select an option" name="q-12" required>
+                                            <select class="form-control-custom" validationMessage="please select an option" name="idtype" required>
                                                     <option value="Passport">Passport</option>
                                                     <option value="National Identification Card">National Identification Card</option>
                                                     <option value="Voter&#x27;s ID card">Voter&#x27;s ID card</option>
@@ -116,37 +95,19 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label>ID Number</label>
-                                        <input type="text" validationMessage="field is required" class="form-control-custom" name="q-13" required />
+                                        <input type="text" validationMessage="field is required" class="form-control-custom" name="idnumber" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>ID Issue Date</label><br />
-                                        <input type="date" validationMessage="field is required" class="form-control-custom " name="q-14"  />
+                                        <label>Password</label><br />
+                                        <input type="password" validationMessage="field is required" class="form-control-custom " name="password"  />
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <label>City &amp; Country of Birth</label>
-                                        <input type="text" validationMessage="field is required" class="form-control-custom" name="q-16"  />
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Home Address</label>
-                                        <input type="text" validationMessage="field is required" class="form-control-custom" name="q-17"  />
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Upload  ID</label><br />
-                                        <input type="file" accept="image/*,application/pdf,text/plain,application/msword,application/vnd.ms-excel" validationMessage="please select a file" class="form-control-custom file-upload" name="q-19" required multiple />
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <label>Customer&#x27;s Email</label>
-                                        <input type="text" validationMessage="field is required" class="form-control-custom" name="q-67"  />
+                                        <label>Confirm Password</label><br />
+                                        <input type="password" validationMessage="field is required" class="form-control-custom " name="confpassword"  />
                                     </div>
                                 </div>
                 </div>

@@ -10,13 +10,13 @@
 
 
     <link rel="stylesheet" href="/static/bootstrap.min.css" />
-    <link rel="stylesheet" href="/lib/SweetAlert/sweetalert2.min.css" />
+    <link rel="stylesheet" href="/static/sweetalert2.min.css" />
     <link rel="stylesheet" href="/static/custom.css" />
     <link rel="stylesheet" href="/css/reportStyles.css" />
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/lib/Kendo/kendo.common.min.css" />
-    <link rel="stylesheet" href="/lib/Kendo/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="/lib/Kendo/kendo.material.min.css" />
+    <link rel="stylesheet" href="/static/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="/static/kendo.material.min.css" />
     <link rel="stylesheet" href="/lib/Kendo/kendo.material.mobile.min.css" />
     
     <style>
@@ -33,7 +33,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a class="navbar-brand navbar-dark navbar-nav nav-link" href="#" onclick="window.history.back()">
+            <a class="navbar-brand navbar-dark navbar-nav nav-link" href="{{ url_for('home') }}" onclick="window.history.back()">
                 <i class="fa fa-arrow-left navbar-dark" style="color: #000"><b> Back</b></i>
             </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

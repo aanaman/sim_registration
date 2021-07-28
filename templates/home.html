@@ -10,13 +10,13 @@
 
 
     <link rel="stylesheet" href="/static/bootstrap.min.css" />
-    <link rel="stylesheet" href="/lib/SweetAlert/sweetalert2.min.css" />
+    <link rel="stylesheet" href="/static/sweetalert2.min.css" />
     <link rel="stylesheet" href="/static/custom.css" />
     <link rel="stylesheet" href="/css/reportStyles.css" />
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/lib/Kendo/kendo.common.min.css" />
-    <link rel="stylesheet" href="/lib/Kendo/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="/lib/Kendo/kendo.material.min.css" />
+    <link rel="stylesheet" href="/static/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="/static/kendo.material.min.css" />
     <link rel="stylesheet" href="/lib/Kendo/kendo.material.mobile.min.css" />
     
     <style>
@@ -60,10 +60,10 @@
         <div class="card-body">
             <div id='wrapper' style='text-align: center;'>
                 <div style='display: inline-block; vertical-align: top;'>
-                    <a href="enrol.html" class="btn-rounded btn-rounded-primary but-sub justify-content-center select-one-item"><h1>Enrol</h1></a>
+                    <a href="{{ url_for('enrol') }}" class="btn-rounded btn-rounded-primary but-sub justify-content-center select-one-item"><h1>Enrol</h1></a>
                 </div>
                 <div style='display: inline-block; vertical-align: top;'>
-                    <a href="verify.html" class="btn-rounded btn-rounded-primary but-sub justify-content-center select-one-item"><h1>Verify</h1></a>
+                    <a href="{{ url_for('verify') }}" class="btn-rounded btn-rounded-primary but-sub justify-content-center select-one-item"><h1>Verify</h1></a>
                 </div>
             </div>
         </div>

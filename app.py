@@ -1,3 +1,4 @@
+from types import MethodDescriptorType
 from flask import (Flask,redirect,render_template,request,session,url_for,jsonify) 
 import json
 import requests
@@ -8,15 +9,19 @@ from base64 import *
 app = Flask(__name__)
         
  
-@app.route('/')
-def index():
-    return redirect(url_for('login'))
-
+@app.route('/index/', methods=['GET','POST'])
+def home():
+    msg = 'welcome to telco sim card registration do well to ennrol, verify and register your sim card'
+    return render_template('index.html' , msg = msg)
+    
+    
+"""""
 def validation_post_data(data_object):
     if ("username" in data_object and "image" in data_object):
         return True
     else:
         return False
+
 
 def get_base64(files):
     if len(files) > 0:
@@ -24,8 +29,8 @@ def get_base64(files):
         return b64file
     return ""
     
-@app.route('/index', methods=['GET', 'POST'])
-def login():
+@app.route('/enrol', methods=['GET', 'POST'])
+def enrol():
     if request.method == 'POST':
         api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
         headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
@@ -37,12 +42,12 @@ def login():
         print(headers)
         r = requests.post('https://api.bacegroup.com/v2/verify', headers=headers, data=json.dumps(payload))
         print(r.json())
-    return render_template('index.html')
+    return render_template('enrol.html')
 
 
 
 @app.route("/verify", methods=["GET", "POST"])
-def signup():
+def verify():
     if request.method =="POST":
         api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
         headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
@@ -55,7 +60,7 @@ def signup():
         r = requests.post('https://api.bacegroup.com/v2/enroll', headers=headers, data=json.dumps(payload))
 
         print(r.text)
-    return render_template("signup.html")
+    return render_template("verify.html")
     
 
 @app.route("/register", methods=["GET", "POST"])
@@ -63,7 +68,7 @@ def register():
     return render_template("profile.html")
 
 
-
+"""
 if __name__ == "__main__":
     app.debug =True
     app.run() 

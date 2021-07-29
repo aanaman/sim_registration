@@ -1,4 +1,3 @@
-from types import MethodDescriptorType
 from flask import (Flask,redirect,render_template,request,session,url_for,jsonify) 
 import json
 import requests
@@ -35,6 +34,12 @@ def home():
 @app.route('/facial', methods=['GET','POST'])
 def facial():
     return render_template('facial.html')
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

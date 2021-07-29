@@ -1,0 +1,101 @@
+.page-wrapper {
+    background: #fff;
+}
+
+.page-body {
+    padding: 15px 40px;
+}
+
+.input-rounded, span.k-widget.k-datepicker.k-header, .k-dropdown,
+.select2-container--default .select2-selection--single,
+select.custom-select, select.form-control{
+    border: 1px solid #00678f;
+    outline: none;
+    border-radius: 30px;
+    width: 100%
+}
+.select2-container--default .select2-selection--multiple {
+    border-radius: 30px !important;
+    border-color: #00678f !important;
+}
+.k-dropdown-wrap, .k-dropdown-wrap:hover {
+    border: 1px solid #00678f;
+    outline: none;
+    border-radius: 30px;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    border-radius:12px !important;
+    background-color:#ffcc00 !important;
+    color:#000 !important;
+}
+.input-rounded:focus, span.k-widget.k-datepicker.k-header:focus, .k-dropdown {
+    border: 1px solid #00678f;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+    color:#000 !important;
+}
+.k-item .k-state-default{
+    border:none;
+}
+.k-tabstrip .k-tabstrip-items .k-state-active .k-link {
+    color: #000 !important;
+    background-color: #ffcc00;
+    border-color: none !important;
+    box-shadow:rgba(47, 47, 47, 0.60) 1px 1px;
+}
+
+.k-tabstrip .k-tabstrip-items .k-item {
+    color: #000 !important;
+    border-color: #ebebeb !important;
+    box-shadow: none;
+}
+
+.k-tabstrip .k-tabstrip-items .k-item, .k-tabstrip.k-header {
+    background-color: #ebebeb !important;
+}
+span.k-widget.k-datepicker.k-header span {
+    border: none;
+    background: none;
+}
+
+        span.k-widget.k-datepicker.k-header span:hover {
+            border: none;
+        }
+
+    span.k-widget.k-datepicker.k-header input {
+        border: none;
+        outline: none;
+        border-radius: 30px;
+    }
+
+input:focus {
+    box-shadow: rgba(0, 103, 143, 0.31);
+}
+
+.input {
+    margin-bottom: 15px;
+}
+
+.submitBox {
+    max-width: 250px;
+    /*display: flex;
+        align-items: flex-end;*/
+}
+
+.label-col {
+    max-width: 102.5px
+}
+
+.form-contain {
+    margin-left: 0 !important;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color:#ffffff;
+}
+.wizard-content .wizard > .actions > ul > li > a[href="#previous"], 
+.wizard-content .wizard > .actions > ul > li > a[href="#next"],
+.wizard-content .wizard > .actions > ul > li > a[href="#finish"] {
+    border-radius: 30px;
+}
+

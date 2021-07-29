@@ -14,13 +14,13 @@ def index():
 
 
 
-@app.route('/enrol', methods=['GET','POST']) 
+@app.route('/enrol/', methods=['GET','POST']) 
 def enrol():
     return render_template('enrol.html')
 
 
 
-@app.route('/verify', methods=['GET', 'POST'])
+@app.route('/verify/', methods=['GET', 'POST'])
 def verify():
     return render_template('verify.html')
 

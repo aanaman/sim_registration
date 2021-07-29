@@ -26,18 +26,18 @@ def verify():
 
 
 
-@app.route('/home', methods=['GET','POST'])
+@app.route('/home/', methods=['GET','POST'])
 def home():
     return render_template('home.html')
 
 
-@app.route('/facial', methods=['GET','POST'])
+@app.route('/facial/', methods=['GET','POST'])
 def facial():
     return render_template('facial.html')
 
 
 
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register/', methods=['GET','POST'])
 def register():
     return render_template('register.html')
 

@@ -1,5 +1,5 @@
 #importing python library
-from flask import (Flask,redirect,render_template,request,session,url_for,jsonify) 
+from flask import Flask, redirect, render_template, request, session, url_for
 
 
 #initializing flask app
@@ -26,16 +26,15 @@ def home():
 def enrol():
     if request.method == "POST":
         req = request.form
-
         firstname = req["firstname"]
         lastname = req["lastname"]
         idnumber = req["idnumber"]
         idtype = req["idtype"]
         password = req["password"]
         confpassword = req["confpassword"]
-
+        
         print(firstname,lastname,idnumber,idtype,password,confpassword)
-        return redirect(request.url)
+        return redirect("/facial")
 
     return render_template('enrol.html')
 

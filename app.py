@@ -1,21 +1,14 @@
 #importing python library
 from flask import (Flask,redirect,render_template,request,session,url_for,jsonify) 
-from flaskext.mysql  import MySQL
-import re
-from base64 import *
 
 
 #initializing flask app
 app = Flask(__name__)
         
 #creating sql object
-mysql = MySQL(app)
+#mysql = MySQL(app)
 
 #MySQL configuration
-app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'simregistration'
-app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 
 
@@ -29,22 +22,20 @@ def home():
     return render_template('home.html')
 
 
-@app.route('/enrol/', methods=['GET','POST']) 
+@app.route("/enrol/", methods=["GET","POST"]) 
 def enrol():
-    if request.method == 'POST':
-        Save = request.form
-        firstname = Save['firstname']
-        lastname = Save['lastname']
-        idtype = Save['idtype']
-        idnumber = Save['idnumber']
-        password = Save['password']
-        rpassword = Save['rpassword']
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO enrol (firstname,lastname,idtype,idnumber,password,rpassword) VALUES (%s,%s,%s,%s,%s,%s)",(firstname,lastname,idtype,idnumber,password,rpassword))
-        mysql.connection.commit()
-        cur.close()
+    if request.method == "POST":
+        req = request.form
 
-        return "Enrolled Succussfully"
+        firstname = req["firstname"]
+        lastname = req["lastname"]
+        idnumber = req["idnumber"]
+        idtype = req["idtype"]
+        password = req["password"]
+        confpassword = req["confpassword"]
+
+        print(firstname,lastname,idnumber,idtype,password,confpassword)
+        return redirect(request.url)
 
     return render_template('enrol.html')
 

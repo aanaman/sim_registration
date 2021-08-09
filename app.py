@@ -11,6 +11,9 @@ app = Flask(__name__)
 #creating sql object
 mysql = MySQL(app)
 
+#setting a secret key for your application
+app.secret_key = "finalyear"
+
 #MySQL configuration
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
@@ -74,7 +77,7 @@ def enrol():
 @app.route('/verify/', methods=['GET', 'POST'])
 def verify():
     # Output message if something goes wrong...
-    msg = ''
+    msg = 'Incorrect user details/password!'
     # Check if "username" and "password" POST requests exist (user submitted form)
     if request.method == 'POST' and 'idtype' in request.form and 'idnumber' in request.form and 'pword' in request.form:
         # Create variables for easy access
@@ -84,23 +87,23 @@ def verify():
         # Check if account exists using MySQL
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
+        cursor.execute('SELECT * FROM enrol WHERE idtype = %s AND idnumber = %s AND pword = %s', (idtype, idnumber, pword))
         # Fetch one record and return result
         account = cursor.fetchone()
         # If account exists in accounts table in out database
         if account:
             # Create session data, we can access this data in other routes
             session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
+            session['idtype'] = account['idtype']
+            session['idnumber'] = account['idnumber']
+            #session['pword'] = pword['pword']
             # Redirect to home page
-            return 'Logged in successfully!'
+            return redirect("/facial")
         else:
-            # Account doesnt exist or username/password incorrect
-            msg = 'Incorrect username/password!'
-    # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
-    return render_template('verify.html')
+            # Account doesnt exist or incorrect details
+            flash = "Incorrect user details!"
+    # Show the verify page with message (if any)
+    return render_template('verify.html', msg =msg)
 
 
 
@@ -132,8 +135,8 @@ def register():
         conn.commit()
         cursor.close()
         #redirect url to facial for the next process
-        return "Hello, you have successfully registred your sim card"
-        #return redirect("/facial")
+        #return "Hello, you have successfully registred your sim card"
+        return redirect("/facial")
 
     return render_template('register.html')
 

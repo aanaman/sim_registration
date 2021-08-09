@@ -34,7 +34,6 @@ def enrol():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     
-    msg = ""
     #check for user details
     if request.method == "POST": 
         firstname = request.form["firstname"]
@@ -70,7 +69,32 @@ def facial():
 
 @app.route('/register/', methods=['GET','POST'])
 def register():
+    conn = mysql.connect()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    if request.method == 'POST':
+        firstname = request.form["firstname"]
+        lastname = request.form["lastname"]
+        phonenumber = request.form["phonenumber"]
+        dateofbirth = request.form["dateofbirth"]
+        middlename = request.form["middlename"]
+        idnumber = request.form["idnumber"]
+        dateissued = request.form["dateissued"]
+        address = request.form["address"]
+        email = request.form["email"]
+        
+        #check if account exist in MySQL:
+        cursor.execute('INSERT INTO register VALUES(%s, %s, %s, %s, %s, %s,%s, %s, %s)',(firstname, lastname, phonenumber, dateofbirth, middlename, idnumber, dateissued, address,email ))
+        
+        conn.commit()
+        cursor.close()
+        #redirect url to facial for the next process
+        return "Hello, you have successfully registred your sim card"
+        #return redirect("/facial")
+
     return render_template('register.html')
+
+
 
 
 

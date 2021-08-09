@@ -30,6 +30,7 @@ def home():
 
 @app.route("/enrol/", methods=["GET","POST"]) 
 def enrol():
+    
     #connect 
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
@@ -43,9 +44,24 @@ def enrol():
         pword = request.form["pword"]
         confpword = request.form["confpword"]
 
+        # Check if account exists using MySQL
+        cursor.execute('SELECT * FROM enrol WHERE idnumber = %s and idtype = %s and pword =%s', (idnumber, idtype, pword))
+        account = cursor.fetchone()
+
+        # Check if account exists show error and validation checks
+        if account:
+            msg = 'Account already exists!'
+
+        elif not re.match(r'[A-Za-z0-9]+', firstname):
+            msg = 'Username must contain only characters and numbers!'
+
+        elif not re.match(r'[A-Za-z0-9]+', firstname):
+            msg = 'Username must contain only characters and numbers!'
+        elif not idnumber or not idtype or not pword:
+            msg = 'Please fill out the form!'
+        else:
         #check if account exist in MySQL:
-        cursor.execute('INSERT INTO enrol VALUES(%s, %s, %s, %s, %s, %s)',(firstname, lastname, idtype, idnumber, pword, confpword))
-        
+            cursor.execute('INSERT INTO enrol VALUES(%s, %s, %s, %s, %s, %s)',(firstname, lastname, idtype, idnumber, pword, confpword))    
         conn.commit()
         cursor.close()
         #redirect url to facial for the next process
@@ -57,6 +73,33 @@ def enrol():
 
 @app.route('/verify/', methods=['GET', 'POST'])
 def verify():
+    # Output message if something goes wrong...
+    msg = ''
+    # Check if "username" and "password" POST requests exist (user submitted form)
+    if request.method == 'POST' and 'idtype' in request.form and 'idnumber' in request.form and 'pword' in request.form:
+        # Create variables for easy access
+        idtype = request.form['idtype']
+        idnumber = request.form['idnumber']
+        pword = request.form['pword']
+        # Check if account exists using MySQL
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE username = %s AND password = %s', (username, password,))
+        # Fetch one record and return result
+        account = cursor.fetchone()
+        # If account exists in accounts table in out database
+        if account:
+            # Create session data, we can access this data in other routes
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['username'] = account['username']
+            # Redirect to home page
+            return 'Logged in successfully!'
+        else:
+            # Account doesnt exist or username/password incorrect
+            msg = 'Incorrect username/password!'
+    # Show the login form with message (if any)
+    return render_template('index.html', msg=msg)
     return render_template('verify.html')
 
 

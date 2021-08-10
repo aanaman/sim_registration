@@ -34,13 +34,13 @@ def home():
 
 @app.route("/enrol/", methods=["GET","POST"]) 
 def enrol():
-    
+    msg = ""
     #connect 
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-    
     #check for user details
-    if request.method == "POST": 
+    if request.method == "POST" and "firstname" in request.form and "lastname" in request.form and "idtype" in request.form and "idnumber" in request.form and "pword" in request.form and "confpword" in request.form: 
+        #create a variable for easy access
         firstname = request.form["firstname"]
         lastname = request.form["lastname"]
         idtype = request.form["idtype"]
@@ -49,29 +49,38 @@ def enrol():
         confpword = request.form["confpword"]
 
         # Check if account exists using MySQL
-        cursor.execute('SELECT * FROM enrol WHERE idnumber = %s and idtype = %s and pword =%s', (idnumber, idtype, pword))
+        cursor.execute('SELECT * FROM enrol WHERE idnumber = %s', (idnumber))
         account = cursor.fetchone()
 
         # Check if account exists show error and validation checks
         if account:
-            msg = 'Account already exists!'
+            msg = 'Id number already exists!'
 
         elif not re.match(r'[A-Za-z0-9]+', firstname):
-            msg = 'Username must contain only characters and numbers!'
+            msg = 'firstname must contain only characters and numbers!'
 
-        elif not re.match(r'[A-Za-z0-9]+', firstname):
-            msg = 'Username must contain only characters and numbers!'
-        elif not idnumber or not idtype or not pword:
+        elif not re.match(r'[A-Za-z0-9]+', lastname):
+            msg = 'lastname must contain only characters and numbers!'
+
+        elif not re.match(r'[A-Za-z0-9@#$]{6,12}', pword):
+
+            msg = 'password must be 6 degit with special character!'
+
+        elif not firstname or not lastname or not idtype or not idnumber or not pword or not confpword:
             msg = 'Please fill out the form!'
+            
         else:
         #check if account exist in MySQL:
-            cursor.execute('INSERT INTO enrol VALUES(%s, %s, %s, %s, %s, %s)',(firstname, lastname, idtype, idnumber, pword, confpword))    
-        conn.commit()
-        cursor.close()
+            cursor.execute('INSERT INTO enrol VALUES(%s, %s, %s, %s, %s, %s)',(firstname, lastname, idtype, idnumber, pword, confpword)) 
+            conn.commit()
+            cursor.close()
+            return redirect("/verify")
+    
+    elif request.method == 'POST':
+        msg = 'please fill the form!'
         #redirect url to facial for the next process
-        return redirect("/facial")
 
-    return render_template('enrol.html')
+    return render_template('enrol.html', msg = msg)
 
             
 
@@ -95,6 +104,7 @@ def verify():
         if account:
             # Create session data, we can access this data in other routes
             session['loggedin'] = True
+            #session['id'] = account['id']
             session['idtype'] = account['idtype']
             session['idnumber'] = account['idnumber']
             #session['pword'] = pword['pword']
@@ -102,10 +112,9 @@ def verify():
             return redirect("/facial")
         else:
             # Account doesnt exist or incorrect details
-            msg = 'Invalid details'
-            #return "Invalid details!" 
+            msg = 'Invalid details!' 
     # Show the verify page with message (if any)
-    return render_template('verify.html', msg=msg)
+    return render_template('verify.html', msg = msg)
 
 
 
@@ -141,9 +150,6 @@ def register():
         return redirect("/facial")
 
     return render_template('register.html')
-
-
-
 
 
 

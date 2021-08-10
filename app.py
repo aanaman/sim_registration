@@ -1,5 +1,6 @@
 #importing python library
 from flask import Flask, redirect, render_template, request, session, url_for
+from flask.helpers import flash
 from flaskext.mysql import MySQL
 import pymysql
 import re
@@ -76,8 +77,8 @@ def enrol():
 
 @app.route('/verify/', methods=['GET', 'POST'])
 def verify():
+    msg = ""
     # Output message if something goes wrong...
-    msg = 'Incorrect user details/password!'
     # Check if "username" and "password" POST requests exist (user submitted form)
     if request.method == 'POST' and 'idtype' in request.form and 'idnumber' in request.form and 'pword' in request.form:
         # Create variables for easy access
@@ -101,9 +102,10 @@ def verify():
             return redirect("/facial")
         else:
             # Account doesnt exist or incorrect details
-            flash = "Incorrect user details!"
+            msg = 'Invalid details'
+            #return "Invalid details!" 
     # Show the verify page with message (if any)
-    return render_template('verify.html', msg =msg)
+    return render_template('verify.html', msg=msg)
 
 
 

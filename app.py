@@ -1,10 +1,12 @@
 #importing python library
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, json, redirect, render_template, request, session, url_for, jsonify
+import  requests
 from flask.helpers import flash
 from flaskext.mysql import MySQL
 import pymysql
 import re
 import bcrypt
+from base64 import *
 
 
 #initializing flask app
@@ -21,6 +23,13 @@ app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
 app.config['MYSQL_DATABASE_DB'] = 'simcard'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+
+
+def get_base64(files):
+    if len(files) > 0:
+        b64file = b64encode(files['image'].read()).decode("utf-8")
+        return b64file
+    return ""
 
 
 #seting my flask route
@@ -53,10 +62,6 @@ def enrol():
         # Check if account exists using MySQL
         cursor.execute('SELECT * FROM enrol WHERE idnumber = %s', (idnumber))
         account = cursor.fetchone()
-
-        if account:
-            session['firstname'] = account['firstname']
-            session['lastname'] = account['lastname']
 
         # Check if account exists show error and validation checks
         if account:
@@ -134,7 +139,25 @@ def verify():
 
 @app.route('/facial/', methods=['GET','POST'])
 def facial():
+    if request.method =="POST":
+        api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
+        headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
+        data = request.form
+        print(data)
+        print(request.files)
+        b64file = get_base64(request.files)
+        payload = {"gallery":"tsatsu_bd","identifier":data["idnumber"],"image":b64file}
+        print(headers)
+        r = requests.post('https://api.bacegroup.com/v2/enroll', headers=headers, data=json.dumps(payload))
+
+        print(r.text)
+
+        return redirect('/register')
+
     return render_template('facial.html')
+
+
+
 
 
 
@@ -143,8 +166,7 @@ def register():
     msg = ""
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
-
-    if request.method == 'POST':
+    if request.method == 'POST' and 'firstname' in request.form and 'lastname' in request.form and 'idnumber' in request.form:
         firstname = request.form["firstname"]
         lastname = request.form["lastname"]
         phonenumber = request.form["phonenumber"]
@@ -157,18 +179,22 @@ def register():
         address = request.form["address"]
         email = request.form["email"]
 
-
         cursor.execute('INSERT INTO register VALUES(%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)',(firstname, lastname, phonenumber, dateofbirth, middlename, idtype, idnumber, dateissued, country, address, email ))
-        
         conn.commit()
         cursor.close()
         msg = f"Hello, {firstname}  {lastname}  {middlename} you have successfully registred your new sim card"
         #redirect url to facial for the next process
         return render_template('alert.html' , msg = msg)  
         
-        
-
+    
     return render_template('register.html')
+
+
+
+
+
+
+
 
 
 

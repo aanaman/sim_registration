@@ -52,10 +52,10 @@
 
         <div class="card mt-3">
             <div class="card-header text-center">
-                <span>Sim Registration</span>
+                <span>Actual Sim Registration</span>
             </div>
             <div class="card-body">
-                <form method="POST" action="/register/" aria-autocomplete="inline">
+                <form method="POST" action="/register/" autocomplete="off">
                     <input type="hidden" name="productId" value="3" />
                     <div class="row">
                         <div class="col-sm-4">
@@ -69,8 +69,8 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>LAST NAME</label>
-                                <input type="text" validationMessage="field is required" name="lastname"
-                                    class="form-control-custom" required />
+                                <input id="lastname" type="text" validationMessage="field is required" name="lastname"
+                                    class="form-control-custom"  required/>
                                 <span class="k-invalid-msg"></span>
                             </div>
                         </div>
@@ -161,6 +161,9 @@
         </div>
 
     </div>
+    <script>
+      
+    </script>
     <!--<script src="/static/jquery-3.5.1.js"></script>
     <script src="/static/bootstrap.min.js"></script>
     <script src="/static/axios.min.js"></script>

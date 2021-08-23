@@ -75,11 +75,15 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>ID Number</label>
-                                <input type="text" name="lastname" class="form-control-custom" required />
-                                <span class="k-invalid-msg"></span>
-                            </div>
+                            <label>Valid National ID Card</label><span style="color: red;"> *</span>
+                                <select class="form-control-custom" name="idtype" required>
+                                    <option value="Passport">Passport</option>
+                                    <option value="Voter&#x27;s ID card"> Old Voter ID card</option>
+                                    <option value="Driver&#x27;s License ">Driver&#x27;s License </option>
+                                    <option value="SSNIT Biometric Card">SSNIT Biometric Card</option>
+                                    <option value="National Health Insurance Card">National Health Insurance Card
+                                    </option>
+                                </select>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -91,20 +95,16 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control-custom" name="idnumber" required />
+                                <input type="text" class="form-control-custom" name="lastname" required />
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label>Valid National ID Card</label><span style="color: red;"> *</span>
-                                <select class="form-control-custom" name="idtype" required>
-                                    <option value="Passport">Passport</option>
-                                    <option value="Voter&#x27;s ID card"> Old Voter ID card</option>
-                                    <option value="Driver&#x27;s License ">Driver&#x27;s License </option>
-                                    <option value="SSNIT Biometric Card">SSNIT Biometric Card</option>
-                                    <option value="National Health Insurance Card">National Health Insurance Card
-                                    </option>
-                                </select>
+                                <div class="form-group">
+                                    <label>ID Number</label>
+                                    <input type="text" name="idnumber" class="form-control-custom" required />
+                                    <span class="k-invalid-msg"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -131,6 +131,7 @@
     </div>
     <center>
         <div id="msg">{{ msg }}</div>
+        <div id="error">{{ error }}</div>
     </center>
    <!--<script src="/static/jquery-3.5.1.js"></script>
     <script src="/static/bootstrap.min.js"></script>

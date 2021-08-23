@@ -54,6 +54,10 @@ def enrol():
         cursor.execute('SELECT * FROM enrol WHERE idnumber = %s', (idnumber))
         account = cursor.fetchone()
 
+        if account:
+            session['firstname'] = account['firstname']
+            session['lastname'] = account['lastname']
+
         # Check if account exists show error and validation checks
         if account:
             msg = 'Id number already exists!'
@@ -140,7 +144,7 @@ def register():
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
-    if request.method == 'POST' and 'firstname' in request.form and 'lastname' in request.form and 'idnumber' in request.form:
+    if request.method == 'POST':
         firstname = request.form["firstname"]
         lastname = request.form["lastname"]
         phonenumber = request.form["phonenumber"]
@@ -152,22 +156,8 @@ def register():
         country = request.form["country"]
         address = request.form["address"]
         email = request.form["email"]
-        
-        cursor.execute('SELECT * FROM enrol WHERE firstname = %s AND lastname = %s AND idnumber = %s AND idtype = %s', (firstname, lastname, idnumber, idtype))
-        # Fetch one record and return result
-        account = cursor.fetchall()
-        # If account exists in accounts table in our database
-        if account:
-            # Create session data, we can access this data in other routes
-            session['loggedin'] = True
-            session['firstname'] = account['firstanme']
-            session['lastname'] = account['lastname']
-            session['idnumber'] = account['idnumber']
-            session['idtype'] = account['idtype']
-        else:
-        #check if account exist in MySQL:
-            msg = 'invalid'
-        
+
+
         cursor.execute('INSERT INTO register VALUES(%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)',(firstname, lastname, phonenumber, dateofbirth, middlename, idtype, idnumber, dateissued, country, address, email ))
         
         conn.commit()

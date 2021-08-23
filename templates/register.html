@@ -61,7 +61,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>FIRST NAME</label>
-                                <input type="text" validationMessage="field is required" name="firstname"
+                                <input type="text" id="firstname" validationMessage="field is required" name="firstname"
                                     class="form-control-custom" required />
                                 <span class="k-invalid-msg"></span>
                             </div>
@@ -69,7 +69,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>LAST NAME</label>
-                                <input id="lastname" type="text" validationMessage="field is required" name="lastname"
+                                <input id="lastname" id="lastname" type="text" validationMessage="field is required" name="lastname"
                                     class="form-control-custom"  required/>
                                 <span class="k-invalid-msg"></span>
                             </div>
@@ -101,7 +101,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>Valid National ID Card</label>
-                                <select class="form-control-custom" validationMessage="please select an option"
+                                <select class="form-control-custom" id="idtype" validationMessage="please select an option"
                                     name="idtype" required>
                                     <option value="Passport">Passport</option>
                                     <option value="National Identification Card">National Identification Card</option>
@@ -116,7 +116,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>ID Number</label>
-                                <input type="text" validationMessage="field is required" class="form-control-custom"
+                                <input type="text" id="idnumber" validationMessage="field is required" class="form-control-custom"
                                     name="idnumber" required />
                             </div>
                         </div>
@@ -161,9 +161,6 @@
         </div>
 
     </div>
-    <script>
-      
-    </script>
     <!--<script src="/static/jquery-3.5.1.js"></script>
     <script src="/static/bootstrap.min.js"></script>
     <script src="/static/axios.min.js"></script>

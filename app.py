@@ -73,9 +73,6 @@ def enrol():
 
         elif pword != confpword :
             error = 'password do not match'
-        
-        elif idtype == firstname:
-            error = 'id and name already exist!'
 
         elif not firstname or not lastname or not idtype or not idnumber or not pword or not confpword:
             msg = 'Please fill out the form!'
@@ -121,6 +118,7 @@ def verify():
             session['idnumber'] = account['idnumber']
             #session['pword'] = pword['pword']
             # Redirect to home page
+        
             return redirect("/facial")
         else:
             # Account doesnt exist or incorrect details
@@ -138,31 +136,49 @@ def facial():
 
 @app.route('/register/', methods=['GET','POST'])
 def register():
+    msg = ""
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
-    if request.method == 'POST':
+    if request.method == 'POST' and 'firstname' in request.form and 'lastname' in request.form and 'idnumber' in request.form:
         firstname = request.form["firstname"]
         lastname = request.form["lastname"]
         phonenumber = request.form["phonenumber"]
         dateofbirth = request.form["dateofbirth"]
         middlename = request.form["middlename"]
+        idtype = request.form["idtype"]
         idnumber = request.form["idnumber"]
         dateissued = request.form["dateissued"]
+        country = request.form["country"]
         address = request.form["address"]
         email = request.form["email"]
         
+        cursor.execute('SELECT * FROM enrol WHERE firstname = %s AND lastname = %s AND idnumber = %s AND idtype = %s', (firstname, lastname, idnumber, idtype))
+        # Fetch one record and return result
+        account = cursor.fetchall()
+        # If account exists in accounts table in our database
+        if account:
+            # Create session data, we can access this data in other routes
+            session['loggedin'] = True
+            session['firstname'] = account['firstanme']
+            session['lastname'] = account['lastname']
+            session['idnumber'] = account['idnumber']
+            session['idtype'] = account['idtype']
+        else:
         #check if account exist in MySQL:
-        cursor.execute('INSERT INTO register VALUES(%s, %s, %s, %s, %s, %s,%s, %s, %s)',(firstname, lastname, phonenumber, dateofbirth, middlename, idnumber, dateissued, address,email ))
+            msg = 'invalid'
+        
+        cursor.execute('INSERT INTO register VALUES(%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s)',(firstname, lastname, phonenumber, dateofbirth, middlename, idtype, idnumber, dateissued, country, address, email ))
         
         conn.commit()
         cursor.close()
+        msg = f"Hello, {firstname}  {lastname}  {middlename} you have successfully registred your new sim card"
         #redirect url to facial for the next process
-        #return "Hello, you have successfully registred your sim card"
-        return redirect("/facial")
+        return render_template('alert.html' , msg = msg)  
+        
+        
 
     return render_template('register.html')
-
 
 
 

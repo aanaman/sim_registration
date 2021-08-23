@@ -65,7 +65,7 @@
                 <span>Enrollment</span>
             </div>
             <div class="card-body">
-                <form action="/enrol/" method="POST">
+                <form action="/enrol/" method="POST" autocomplete="off">
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="form-group">
@@ -76,29 +76,9 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label>Last Name</label>
+                                <label>ID Number</label>
                                 <input type="text" name="lastname" class="form-control-custom" required />
                                 <span class="k-invalid-msg"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>Valid National ID Card</label><span style="color: red;"> *</span>
-                                <select class="form-control-custom" name="idtype" required>
-                                    <option value="Passport">Passport</option>
-                                    <option value="National Identification Card">National Identification Card</option>
-                                    <option value="Voter&#x27;s ID card">Voter ID card</option>
-                                    <option value="Driver&#x27;s License ">Driver&#x27;s License </option>
-                                    <option value="SSNIT Biometric Card">SSNIT Biometric Card</option>
-                                    <option value="National Health Insurance Card">National Health Insurance Card
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>ID Number</label>
-                                <input type="text" class="form-control-custom" name="idnumber" required />
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -106,6 +86,25 @@
                                 <label>Password</label>
                                 <input type="password" name="pword" class="form-control-custom" required />
                                 <span class="k-invalid-msg"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control-custom" name="idnumber" required />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Valid National ID Card</label><span style="color: red;"> *</span>
+                                <select class="form-control-custom" name="idtype" required>
+                                    <option value="Passport">Passport</option>
+                                    <option value="Voter&#x27;s ID card"> Old Voter ID card</option>
+                                    <option value="Driver&#x27;s License ">Driver&#x27;s License </option>
+                                    <option value="SSNIT Biometric Card">SSNIT Biometric Card</option>
+                                    <option value="National Health Insurance Card">National Health Insurance Card
+                                    </option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-sm-4">

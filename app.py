@@ -4,6 +4,7 @@ from flask.helpers import flash
 from flaskext.mysql import MySQL
 import pymysql
 import re
+import bcrypt
 
 
 #initializing flask app
@@ -35,6 +36,7 @@ def home():
 @app.route("/enrol/", methods=["GET","POST"]) 
 def enrol():
     msg = ""
+    error = ""
     #connect 
     conn = mysql.connect()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
@@ -66,12 +68,22 @@ def enrol():
 
             msg = 'password must be 6 degit with special character!'
 
+        elif len(idnumber) < 10 :
+            error = 'Id number is not correct!'
+
+        elif pword != confpword :
+            error = 'password do not match'
+        
+        elif idtype == firstname:
+            error = 'id and name already exist!'
+
         elif not firstname or not lastname or not idtype or not idnumber or not pword or not confpword:
             msg = 'Please fill out the form!'
             
         else:
         #check if account exist in MySQL:
-            cursor.execute('INSERT INTO enrol VALUES(%s, %s, %s, %s, %s, %s)',(firstname, lastname, idtype, idnumber, pword, confpword)) 
+            cursor.execute('INSERT INTO enrol VALUES(%s, %s, %s, %s, %s, %s)',(firstname, lastname, idtype, idnumber, pword, confpword))
+            #hashed = bcrypt.hashpw(pword.encode('utf-8'),bcrypt.gensalt()) 
             conn.commit()
             cursor.close()
             return redirect("/verify")
@@ -80,7 +92,7 @@ def enrol():
         msg = 'please fill the form!'
         #redirect url to facial for the next process
 
-    return render_template('enrol.html', msg = msg)
+    return render_template('enrol.html', msg = msg , error = error)
 
             
 

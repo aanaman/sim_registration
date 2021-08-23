@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="/static/font-awesome.min.css" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="/static/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/sweetalert2.min.css" />
+    <link rel="stylesheet" href="/static/custom.css" />
+    <link rel="stylesheet" href="/static/reportStyles.css" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="stylesheet" href="/static/kendo.common.min.css" />
+    <link rel="stylesheet" href="/static/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="/static/kendo.material.min.css" />
+    <link rel="stylesheet" href="/static/kendo.material.mobile.min.css" />
+    
+    <style>
+        .select-one-item {
+            padding: 50px 30px;
+            padding-top: 10px;
+        }
+        #wrapper {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .valid {
+            color: green;
+        }
+
+        .k-invalid-msg {
+            color: red;
+        }
+    </style>
+    <title>Sim Registration Portal</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark justify-content-center">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <p class="nav-link" href="#" aria-haspopup="true" aria-expanded="false">
+                               <strong></strong> 
+                            </p>
+                        </li>
+                    </ul>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <center>
+            <div style="margin-top:30px;" id="msg">{{ msg }}</div>
+        </center>
+
+    <!--<div class="card mt-3">
+        <div class="card-header text-center">
+            <span>Click on the Enrol button to Start the Registration Process</span>
+        </div>
+        <div class="card-body">
+            <div id='wrapper' style='text-align: center;'>
+                <div style='display: inline-block; vertical-align: top;'>
+                    <a href="{{ url_for('enrol') }}" class="btn-rounded btn-rounded-primary but-sub justify-content-center select-one-item"><h1>Enrol</h1></a>
+                </div>
+                <big><big><big><big><big><big>&#8594;</big></big></big></big></big></big>
+                <div style='display: inline-block; vertical-align: top;'>
+                    <a href="{{ url_for('verify') }}" class="btn-rounded btn-rounded-primary but-sub justify-content-center select-one-item"><h1>Verify</h1></a>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    </div>
+    <!--<script src="/static/jquery-3.5.1.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/axios.min.js"></script>
+    <script src="/static/kendo.all.min.js"></script>
+    <script src="/static/sweetalert2.min.js"></script>
+    <script src="/static/bootbox.min.js"></script>
+    <script src="/static/customer-common.js"></script>
+    
+           <script src="/static/questions.js"></script>
+            <script>
+                $(document).ready(function () {
+                    var year = 2021;
+                    var month = 7;
+                    var day = 1;
+                    $('input[type=date]').each(function (_index, el) {
+                        if ($(el).hasClass("expiry-date")) {
+                            iniExpiryDate(el);
+                        } else {
+                            initDates(el, new Date(Number(year), Number(month) - 1, Number(day)));
+                        }
+                        $(el).removeClass('form-control-custom');
+                    });
+                });
+            </script>-->
+        
+</body>
+</html>

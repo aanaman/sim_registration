@@ -148,16 +148,14 @@ def facial():
         b64file = get_base64(request.files)
         payload = {"gallery":"tsatsu_bd","identifier":data["idnumber"],"image":b64file}
         print(headers)
-        r = requests.post('https://api.bacegroup.com/v2/enroll', headers=headers, data=json.dumps(payload))
+        r = requests.post('https://api.bacegroup.com/v2/validate/voters_id', headers=headers, data=json.dumps(payload))
 
         print(r.text)
 
         return redirect('/register')
 
-    return render_template('facial.html')
 
-
-
+    return render_template('facial.html' )
 
 
 

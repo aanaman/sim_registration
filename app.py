@@ -7,6 +7,7 @@ import pymysql
 import re
 import bcrypt
 from base64 import *
+import face_recognition
 
 
 #initializing flask app
@@ -140,7 +141,33 @@ def verify():
 @app.route('/facial/', methods=['GET','POST'])
 def facial():
     if request.method =="POST":
-        api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
+        image = request.form["image"]
+        idnumber = "1234567892"
+        conn = mysql.connect()
+        cursor = conn.cursor(pymysql.cursors.DictCursor)
+        cursor.execute("SELECT image FROM capturedface WHERE idnumber = %s ", (idnumber))
+        # Fetch one record and return result
+        account = cursor.fetchone()
+        print(account)
+        picture_of_me = face_recognition.load_image_file(account)
+        my_face_encoding = face_recognition.face_encodings(picture_of_me)[0]
+
+        # my_face_encoding now contains a universal 'encoding' of my facial features that can be compared to any other picture of a face!
+
+        unknown_picture = face_recognition.load_image_file(image)
+        unknown_face_encoding = face_recognition.face_encodings(unknown_picture)[0]
+
+        # Now we can see the two face encodings are of the same person with `compare_faces`!
+
+        results = face_recognition.compare_faces([my_face_encoding], unknown_face_encoding)
+
+        if results[0] == True:
+            print("It's a picture of me!")
+        else:
+            print("It's not a picture of me!")
+
+
+        """api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
         headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
         data = request.form
         print(data)
@@ -152,7 +179,7 @@ def facial():
 
         print(r.text)
 
-        return redirect('/register')
+        return redirect('/register')"""
 
 
     return render_template('facial.html' )
@@ -186,12 +213,6 @@ def register():
         
     
     return render_template('register.html')
-
-
-
-
-
-
 
 
 

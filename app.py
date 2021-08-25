@@ -149,8 +149,8 @@ def facial():
         # Fetch one record and return result
         account = cursor.fetchone()
         print(account)
-        picture_of_me = face_recognition.load_image_file(account)
-        my_face_encoding = face_recognition.face_encodings(picture_of_me)[0]
+        picture_of_existing = face_recognition.load_image_file(account)
+        existing_face_encoding = face_recognition.face_encodings(picture_of_existing)[0]
 
         # my_face_encoding now contains a universal 'encoding' of my facial features that can be compared to any other picture of a face!
 

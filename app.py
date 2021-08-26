@@ -159,7 +159,7 @@ def facial():
 
         # Now we can see the two face encodings are of the same person with `compare_faces`!
 
-        results = face_recognition.compare_faces([my_face_encoding], unknown_face_encoding)
+        results = face_recognition.compare_faces([existing_face_encoding], unknown_face_encoding)
 
         if results[0] == True:
             print("It's a picture of me!")

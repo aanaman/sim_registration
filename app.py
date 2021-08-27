@@ -6,8 +6,9 @@ from flaskext.mysql import MySQL
 import pymysql
 import re
 import bcrypt
-from base64 import *
+#from base64 import *
 import face_recognition
+import numpy as np
 
 
 #initializing flask app
@@ -22,15 +23,15 @@ app.secret_key = "finalyear"
 #MySQL configuration
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = ''
-app.config['MYSQL_DATABASE_DB'] = 'simcard'
+app.config['MYSQL_DATABASE_DB'] = 'simregistration'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 
 
-def get_base64(files):
+"""def get_base64(files):
     if len(files) > 0:
         b64file = b64encode(files['image'].read()).decode("utf-8")
         return b64file
-    return ""
+    return """""
 
 
 #seting my flask route
@@ -142,7 +143,7 @@ def verify():
 def facial():
     if request.method =="POST":
         image = request.form["image"]
-        idnumber = "1234567892"
+        idnumber = "1690706328"
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("SELECT image FROM capturedface WHERE idnumber = %s ", (idnumber))
@@ -159,7 +160,7 @@ def facial():
 
         # Now we can see the two face encodings are of the same person with `compare_faces`!
 
-        results = face_recognition.compare_faces([existing_face_encoding], unknown_face_encoding)
+        results = face_recognition.compare_faces([existing_face_encoding], unknown_face_encoding, tolerance= 0.5)
 
         if results[0] == True:
             print("It's a picture of me!")
@@ -167,7 +168,7 @@ def facial():
             print("It's not a picture of me!")
 
 
-        """api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
+        """"api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
         headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
         data = request.form
         print(data)

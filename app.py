@@ -141,7 +141,12 @@ def verify():
 @app.route('/facial/', methods=['GET','POST'])
 def facial():
     if request.method =="POST":
-        image = request.form["image"]
+        if request.method == "POST":
+        str = request.files("image")
+        path = os.path.join('./incomingImage',str.filename)
+        str.save(path)
+        return "good"
+        """"image = request.form["image"]
         idnumber = "1234567892"
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
@@ -167,7 +172,7 @@ def facial():
             print("It's not a picture of me!")
 
 
-        """api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
+        api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
         headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
         data = request.form
         print(data)

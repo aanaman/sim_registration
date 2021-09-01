@@ -138,14 +138,15 @@ def verify():
 
 
 
-@app.route('/facial/', methods=['GET','POST'])
+@app.route('/facial', methods=['GET','POST'])
 def facial():
     if request.method =="POST":
         if request.method == "POST":
-        str = request.files("image")
-        path = os.path.join('./incomingImage',str.filename)
-        str.save(path)
-        return "good"
+            image_file = request.form['file']
+            path = os.path.join('./incomingImage',image_file.filename)
+            image_file.save(path)
+            return "good"
+
         """"image = request.form["image"]
         idnumber = "1234567892"
         conn = mysql.connect()

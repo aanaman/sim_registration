@@ -145,6 +145,7 @@ def verify():
 
 @app.route('/facial/', methods=['GET', 'POST'])
 def facial():
+<<<<<<< HEAD
     if request.method == "POST":
         image = request.files.get('image')
         path = os.path.join('./incomingImage',image.filename)
@@ -158,6 +159,16 @@ def facial():
         with open("../incomingimage.jpeg", "wb") as fh:
             fh.write(base64.decodebytes(image_data))
         #idnumber = "1690706328
+=======
+    if request.method =="POST":
+        if request.method == "POST":
+        str = request.files("image")
+        path = os.path.join('./incomingImage',str.filename)
+        str.save(path)
+        return "good"
+        """"image = request.form["image"]
+        idnumber = "1234567892"
+>>>>>>> 40ac2c85e1da1f03a1db512985169789131b4738
         conn = mysql.connect()
         cursor = conn.cursor(pymysql.cursors.DictCursor)
         cursor.execute("SELECT image FROM capturedface WHERE idnumber = %s ", (idnumber))
@@ -180,7 +191,24 @@ def facial():
         if results[0] == True:
             print("It's a picture of me!")
         else:
+<<<<<<< HEAD
             print("It's not a picture of me!")"""
+=======
+            print("It's not a picture of me!")
+
+
+        api_key = 'T_72876c28-a773-4ac8-b650-4b0d27a6489b'
+        headers = {'x-authorization': 'Basic edwardakorlie73@gmail.com:{api_key}'.format(api_key= api_key),'Content-Type': 'application/json'}
+        data = request.form
+        print(data)
+        print(request.files)
+        b64file = get_base64(request.files)
+        payload = {"gallery":"tsatsu_bd","identifier":data["idnumber"],"image":b64file}
+        print(headers)
+        r = requests.post('https://api.bacegroup.com/v2/validate/voters_id', headers=headers, data=json.dumps(payload))
+
+        print(r.text)
+>>>>>>> 40ac2c85e1da1f03a1db512985169789131b4738
 
     return render_template('facial.html')
 
@@ -216,4 +244,8 @@ def register():
 
 # running the app and turning debug mode on
 if __name__ == "__main__":
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug =True)
+>>>>>>> 40ac2c85e1da1f03a1db512985169789131b4738
